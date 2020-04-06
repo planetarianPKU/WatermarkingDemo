@@ -1,56 +1,57 @@
-%±ØĞëÊÇ1024*1024µÄÍ¼Æ¬
+%MADE BY HDTT
+%å¿…é¡»æ˜¯1024*1024çš„å›¾ç‰‡
 [X,map]=imread('2732x2048-Background-HD-Wallpaper-104.jpg');
 %X=X(:,:,2);
 X=X(1:1024,1:1024,:);
 X_origin=X;
-%È¡ÂÌÉ«µ¥Í¨µÀ
+%å–ç»¿è‰²å•é€šé“
 X_mark=X(1:1024,1:1024,2);
-%È¡Ë®Ó¡
+%å–æ°´å°
 [marking map]=imread('D:\HDTT\marking\HDTT_water_1024_2.png');
-%ÏµÊı£¬Ä£Ê½£¬Ñ¹Ëõ±ÈÀı
+%ç³»æ•°ï¼Œæ¨¡å¼ï¼Œå‹ç¼©æ¯”ä¾‹
 coff = 4;mode=0;pixel_target=720;
-%Ìí¼ÓË®Ó¡
+%æ·»åŠ æ°´å°
 inverse_figure=mark_the_figure_1024(X_mark,marking,coff);
-%Ñ¹Ëõ¹¥»÷
+%å‹ç¼©æ”»å‡»
 inverse_figure_resized=imresize(inverse_figure,pixel_target/1024);    
 inverse_figure_resized=imresize(inverse_figure_resized,1024/pixel_target);
-%ÌáÈ¡Ë®Ó¡
+%æå–æ°´å°
 marking=decomposed_the_marking_1024(inverse_figure_resized,coff,mode,X_origin(:,:,2));
 X(:,:,2)=inverse_figure;
 
 figure,set(gcf,'unit','normalized','position',[0,0,0.9,0.9]);
-subplot(1,3,1),imshow(X_origin);title('Ô­Í¼')
-subplot(1,3,2),imshow(X);title('¼ÓË®Ó¡ºóµÄÍ¼');
-subplot(1,3,3),imshow(imresize(marking,1024/32));title('ÌáÈ¡Ë®Ó¡');
+subplot(1,3,1),imshow(X_origin);title('åŸå›¾')
+subplot(1,3,2),imshow(X);title('åŠ æ°´å°åçš„å›¾');
+subplot(1,3,3),imshow(imresize(marking,1024/32));title('æå–æ°´å°');
 
-%ÏÂÃæÊÇ´¦ÀíÊÓÆµµÄ·ÏÆú´úÂë£¬ÓÃÓÚÌáÈ¡ÊÓÆµÖ¡¼ÓË®Ó¡
+%ä¸‹é¢æ˜¯å¤„ç†è§†é¢‘çš„åºŸå¼ƒä»£ç ï¼Œç”¨äºæå–è§†é¢‘å¸§åŠ æ°´å°
 %figure,imshow(X)
 %{
-v = VideoReader('¹âµÄ²¨¶¯ ©\ Made with Clipchamp.mp4');
-coff = 8;%Ç¿¶È
-pixel_target=720;%Ñ¹ËõºóµÄ´óĞ¡
-mode=0;%Ä£Ê½,0²»Ê¹ÓÃÔ­Í¼£¬1Ê¹ÓÃÔ­Í¼
+v = VideoReader('å…‰çš„æ³¢åŠ¨ â€ Made with Clipchamp.mp4');
+coff = 8;%å¼ºåº¦
+pixel_target=720;%å‹ç¼©åçš„å¤§å°
+mode=0;%æ¨¡å¼,0ä¸ä½¿ç”¨åŸå›¾ï¼Œ1ä½¿ç”¨åŸå›¾
 
 for i = 1:200:2000
-    frame = read(v,i);%¶ÁÈ¡Ö¡
+    frame = read(v,i);%è¯»å–å¸§
     
-    frame_mark_zone = frame(28:28+1023,448:448+1023,:);%¶ÁÈ¡1920*1080µÄ1024*1024·½¿é
-    frame_mark_zone_marked = frame_mark_zone(:,:,2);%¼ÓÔÚ2Í¨µÀÉÏ
-    %Ìí¼ÓË®Ó¡
+    frame_mark_zone = frame(28:28+1023,448:448+1023,:);%è¯»å–1920*1080çš„1024*1024æ–¹å—
+    frame_mark_zone_marked = frame_mark_zone(:,:,2);%åŠ åœ¨2é€šé“ä¸Š
+    %æ·»åŠ æ°´å°
     inverse_figure=mark_the_figure_1024(frame_mark_zone_marked,marking,coff);
-    %Ñ¹Ëõ¹¥»÷
+    %å‹ç¼©æ”»å‡»
     inverse_figure_resized=imresize(inverse_figure,pixel_target/1024);    
     inverse_figure_resized=imresize(inverse_figure_resized,1024/pixel_target);
-    %ÌáÈ¡Ë®Ó¡
+    %æå–æ°´å°
     marking_inverse=decomposed_the_marking_1024(inverse_figure_resized,coff,mode,frame_mark_zone_marked);
     %figure,imshow(marking_inverse);
     frame_mark_zone(:,:,2)=inverse_figure;
     frame_marked=frame;
     frame_marked(28:28+1023,448:448+1023,:)=frame_mark_zone;
     figure,set(gcf,'unit','normalized','position',[0,0,0.9,0.9]);
-    suptitle(["µÚ";string(i);"ÕÅ"])
-    subplot(2,2,3),imshow(frame_marked);title('¼ÓË®Ó¡Í¼')
-    subplot(2,2,1),imshow(frame);title('Ô­Í¼')
-    subplot(2,2,[2 4]),imshow(imresize(marking_inverse,1024/64));title('ÌáÈ¡µÄË®Ó¡')
+    suptitle(["ç¬¬";string(i);"å¼ "])
+    subplot(2,2,3),imshow(frame_marked);title('åŠ æ°´å°å›¾')
+    subplot(2,2,1),imshow(frame);title('åŸå›¾')
+    subplot(2,2,[2 4]),imshow(imresize(marking_inverse,1024/64));title('æå–çš„æ°´å°')
 end
 %}
