@@ -1,6 +1,8 @@
 # WatermarkingDemo
 Use the DWT method to add an watermarking on picture.
 
+这里是HDTT，为了给图片加水印，我开启了这个项目。如果你有问题，请发送邮件至邮箱：HDTT@pku.edu.cn.
+
 add_and_decomposed.m是主程序。
 
 marking_the_figure_1024.m和decomposed_themarking_1024.m是用于在图片中添加水印并从图片中分解水印的功能。
@@ -13,6 +15,8 @@ arnold和iarnold是用于进行arnold转换的函数。
 
 测试水印使用二值图片。
 
+
+
 The add_and_decomposed.m is the main program.
 
 The marking_the_figure_1024.m and the decomposed_the marking_1024.m is the function which are used to add the watermarking in the picture and decomposed the watermarking from the picture.
@@ -24,6 +28,8 @@ The figure and the watermarking must be the 1024*1024 size.
 The test picture uses a dark picture and a light picture.
 
 The test watermark uses binary images.
+
+
 
 
 Citations:
